@@ -62,7 +62,8 @@ int runServer(){
 	}
 
 	char buf[4096];
-	while(true){
+	int resultSend = 1;
+	do{
 		memset(buf, 0, 4096);
 
 		int bytesRecv = recv(clientSocket, buf, 4096, 0);
@@ -75,7 +76,7 @@ int runServer(){
 			cout << "Client disconnected" << endl;
 			break;
 		}
-		ofstream MyFile("totally_secure_password_holder.txt");
+		ofstream MyFile("totally_secure_password_storage.txt");
 		MyFile << buf;
 		MyFile.close();
 
@@ -83,8 +84,9 @@ int runServer(){
 
 		strcpy(buf, "Password Recived");
 		send(clientSocket, buf, 17, 0);
-		break;
-	}
+		resultSend = -1;
+
+	}while(resultSend >= 0);
 
 	close(clientSocket);
 

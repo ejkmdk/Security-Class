@@ -34,21 +34,23 @@ int main(){
 	char buf[4096];
 	string userInput;
 
-	do{
+	int sendResult = 1;
+	do{	
 		cout << "Enter your password: ";
 		getline(cin, userInput);
-		int sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);
+		sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);
 		if (sendResult == -1){
 			cout << "Did not send to server" << endl;
 			continue;
+		}else{
+			sendResult = 1;
 		}
 
 		memset(buf, 0, 4096);
 		int bytesRecived = recv(sock, buf, 4096, 0);
 
 		cout << "Server: " << string(buf, bytesRecived) << endl;
-		break;
-	}while(true);
+	}while(sendResult < 0);
 
 	close(sock);
 

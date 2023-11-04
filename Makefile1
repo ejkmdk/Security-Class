@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -Wall -g -I.
+CFLAGS= -Wall -pthread -g -I.
 DEPS = server.h
 OBJ = passwordCrack.o server.o
 
