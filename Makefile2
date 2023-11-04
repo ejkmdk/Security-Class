@@ -1,0 +1,7 @@
+CC=g++
+CFLAGS= -Wall -g -I.
+OBJ= client.o
+
+client: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+

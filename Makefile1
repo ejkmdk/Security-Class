@@ -1,0 +1,11 @@
+CC=g++
+CFLAGS= -Wall -g -I.
+DEPS = server.h
+OBJ = passwordCrack.o server.o
+
+%.o: %.cpp $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+passwordCrack: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+
