@@ -19,7 +19,7 @@ int main(){
 	
 	int port = 54000;
 
-	string ipAddress = "172.17.143.72";
+	string ipAddress = "127.0.0.1";
 
 	sockaddr_in hint;
 	hint.sin_family = AF_INET;
