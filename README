@@ -45,6 +45,7 @@ It will output the details of how long it took.
 
 To run again make sure both processes are killed so it can bind on the port again.
 (Do ctrl-c on both terminals)
+It is best to wait a few seconds for it to clear before running again, or you will recive a can't bind error
 
 Repeat running the programs to test again
 
