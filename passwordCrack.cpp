@@ -64,31 +64,6 @@ int main(){
 	return 0;
 }
 
-string Cracker(string PassToFind, int * foundPass)
-{
-    int foundPassSize = 1;
-    int numAttempts = 1;
-    bool sentinal = true;
-    string totalString;
-    cout << "Starting Tests..." << endl;
-    while (sentinal) // try a password based on numAttempts
-    {
-        string tryString = GetTestPass(foundPassSize, foundPass);
-        if (tryString == PassToFind) {
-            sentinal = false;
-            totalString = tryString;
-            break;
-        }
-        else {
-            foundPassSize = IncrementByOne(foundPassSize, foundPass);
-            numAttempts += 1;
-        }
-        //cout << tryString << endl;
-    }
-    cout << "Number of Attempts: " << numAttempts << endl;
-    return totalString;
-}
-
 void CrackerLimited(string PassToFind, int* foundPass, int* endPass, int foundPassSizeStart, int foundPassSizeEnd, bool& passwordFound, condition_variable& cv)
 {
     int foundPassSize = foundPassSizeStart;

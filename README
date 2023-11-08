@@ -1,18 +1,67 @@
-Instrustions:
+Github link https://github.com/ejkmdk/Security-Class.git
+
+Use this to clone the repository if the files submitted are windows and not linux.
+
+For GitHub, within a terminal
+sudo apt install git
+mkdir securityProject
+cd securityProject
+git clone https://github.com/ejkmdk/Security-Class.git
+cd Security-Class
+
+Now you will be in the directory with all the files
+
+Instructions:
 We used 127.0.0.1 to test, but we would like to use a real IP to test.
-Run ifconfig to see the IP's for the server side. Look for the Inet IP
-	Within client.cpp, in string ipAddress = "" but in your IP
+Run ifconfig to see the IP's for the server side. Look for the Inet IP, it should be the first one.
+If ifconfig is not installed run "sudo apt install ifconfig"
+	
+Within client.cpp, use vim client.cpp
+	in string ipAddress = "" but in your IP
+then esc ":wq" enter
+
+
+Need g++ so if not installed run "sudo apt install g++"
 
 Run ./driver.sh to make sure the executable files are up to date with the new IP.
-(Must run every time to clear ports/IP)
 
 Since this is being ran on one VM,
 open two terminals, one will be your server, and one will be your client.
+Navigate the second terminal to the same directory with the executable files
 
+For this project it is to be ran on two terminals on the same VM because there
+may be firewall and other issues when connecting the socket.
+
+Running the programs:
 Run ./passwordCrack to start the server side
 Run ./client to start the client side
 
 Once they connect, you will be prompted to enter a password on the client side.
 
-From there enter the password and hit enter and it will run the test 
+From there enter the password and hit enter and it will run the tests 
+Anything above 4 characters takes a long time
+
+It will output the details of how long it took. 
+
+To run again make sure both processes are killed so it can bind on the port again.
+(Do ctrl-c on both terminals)
+
+Repeat running the programs to test again
+
+
+Testing Guide:
+Following the insutructions above.
+
+To test that the password is sent to the server.
+After sending the password, and it finishes. Run "cat tottally_secure_password_storage.txt" to ensure your text was saved.
+
+To test the socket is lisetning, after running "./passwordCrack" and before running the client
+	run "netstat -tulpn" to see it listening
+
+To test the password cracker workers, try different strings at different lengths and characters
+	The longer strings will take longer but it will return that it found the match
+	The program uses a try string on each thread, so one one of them finds the correct one,
+		it prints out all the details and signals all others to stop and the process exits.
+	Up to 4 characters is quick, once you reach higher it takes longer, so for quick testing, 
+	>4 is ideal
 
